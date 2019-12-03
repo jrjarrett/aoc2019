@@ -18,6 +18,9 @@ defmodule Day01Test do
     assert Day01.fuel(100_756) == 33_583
   end
 
+ @doc """
+  This tests Day 1 part 1
+  """
   test "part one answer" do
     assert Day01.totalFuel() == 3_375_962
   end
@@ -32,5 +35,16 @@ defmodule Day01Test do
 
   test "mass 100756 requires 50346" do
     assert Day01.massFuel(100_756) == 50346
+  end
+
+  test "mass 50811 requires 25377" do
+    assert Day01.massFuel(50811) == 25377
+  end
+
+ @doc """
+  This tests Day 1 part 2
+  """
+  test "part two answer" do
+    assert Day01.totalMassFuel == 5061072
   end
 end
