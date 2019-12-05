@@ -45,4 +45,9 @@ defmodule Day02 do
     gravAssist = List.replace_at(gravAssist, 2, 2)
     runProgram(gravAssist, 0)
   end
+
+  def runDay2Part2 do
+    moonLandingDate = List.replace_at(List.replace_at(@input, 1, 56), 2, 96)
+    runProgram(moonLandingDate, 0)
+  end
 end

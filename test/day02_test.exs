@@ -55,4 +55,9 @@ defmodule Day02Test do
   test "Day 2 Part 1" do
     assert Enum.at(Day02.runDay2(), 0) == 4_484_226
   end
+
+  test "Day 2 Part 2" do
+    assert Enum.at(Day02.runDay2Part2(), 0) == 19_690_720
+    assert 100 * 56 + 96 == 5696
+  end
 end
