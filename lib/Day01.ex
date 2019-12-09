@@ -4,32 +4,32 @@ defmodule Day01 do
   """
   @external_resource "priv/day-1.txt"
   @input File.read!("priv/day-1.txt")
-    |> String.split("\n", trim: true)
-    |> Enum.map(fn d -> String.to_integer(d) end)
-
+         |> String.split("\n", trim: true)
+         |> Enum.map(fn d -> String.to_integer(d) end)
 
   def fuel(mass) do
     trunc(Float.floor(mass / 3)) - 2
   end
 
-  def totalFuel do
+  def total_fuel do
     @input
     |> Enum.reduce(0, fn element, accumulator -> fuel(element) + accumulator end)
   end
+
   @doc """
   We split the cases at 6 because 6 fuel requires no extra fuel.
   """
-  def massFuel(amt) when amt <= 6 do
+  def mass_fuel(amt) when amt <= 6 do
     0
   end
 
-  def massFuel(amt) when amt > 6 do
-    fuel(amt) + massFuel(fuel(amt))
+  def mass_fuel(amt) when amt > 6 do
+    fuel(amt) + mass_fuel(fuel(amt))
   end
 
-  def totalMassFuel do
+  def total_mass_fuel do
     @input
-    |> Enum.map(fn m -> massFuel(m) end)
-    |> Enum.sum
+    |> Enum.map(fn m -> mass_fuel(m) end)
+    |> Enum.sum()
   end
 end

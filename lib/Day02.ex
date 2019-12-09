@@ -8,24 +8,24 @@ defmodule Day02 do
          |> String.split(",", trim: true)
          |> Enum.map(&String.to_integer/1)
 
-  @instructionSize 4
+  @instruction_size 4
 
-  def runProgram(input, programCounter) do
+  def run_program(input, program_counter) do
     [instruction | _memory] =
-      Enum.chunk_every(Enum.drop(input, programCounter * @instructionSize), @instructionSize)
+      Enum.chunk_every(Enum.drop(input, program_counter * @instruction_size), @instruction_size)
 
     [opcode | operation] = instruction
 
     case opcode do
       opcode when opcode != 99 ->
-        runProgram(performOperation(input, opcode, operation), programCounter + 1)
+        run_program(perform_operation(input, opcode, operation), program_counter + 1)
 
       opcode when opcode == 99 ->
         input
     end
   end
 
-  def performOperation(memory, opcode, operation) do
+  def perform_operation(memory, opcode, operation) do
     [op1 | rest] = operation
     [op2 | rest] = rest
     [memloc | _rest] = rest
@@ -40,14 +40,14 @@ defmodule Day02 do
     operand1 * operand2
   end
 
-  def runDay2 do
-    gravAssist = List.replace_at(@input, 1, 12)
-    gravAssist = List.replace_at(gravAssist, 2, 2)
-    runProgram(gravAssist, 0)
+  def run_day_2 do
+    grav_assist = List.replace_at(@input, 1, 12)
+    grav_assist = List.replace_at(grav_assist, 2, 2)
+    run_program(grav_assist, 0)
   end
 
-  def runDay2Part2 do
-    moonLandingDate = List.replace_at(List.replace_at(@input, 1, 56), 2, 96)
-    runProgram(moonLandingDate, 0)
+  def run_day_2_part_2 do
+    moon_landing_date = List.replace_at(List.replace_at(@input, 1, 56), 2, 96)
+    run_program(moon_landing_date, 0)
   end
 end
