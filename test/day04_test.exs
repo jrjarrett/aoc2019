@@ -44,4 +44,12 @@ defmodule Day04Test do
   test "A partial range gives an answer" do
     assert Day04.day_4_part_1(246_540, 246_900) == 18
   end
+
+  test "Day 4 part 1" do
+    assert Day04.day_4_part_1(246_540, 787_419) == 1063
+  end
+
+  test "Day 4 Part 2" do
+    assert Day04.day_4_part_2(246_540, 787_419) == 686
+  end
 end

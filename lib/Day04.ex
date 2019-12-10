@@ -7,6 +7,11 @@ defmodule Day04 do
     String.match?(s, ~r/(.)\1+/)
   end
 
+  def strict_adjacent_digits?(s) do
+    Regex.replace(~r/(\d)\1{2,6}/, s, "")
+    |> adjacent_digits?
+  end
+
   def increasing_digits?(s) do
     l = String.split(s, ~r/([0-9])/, include_captures: true, trim: true)
 
@@ -18,9 +23,20 @@ defmodule Day04 do
     adjacent_digits?(s) && increasing_digits?(s)
   end
 
+  def is_strict_password?(s) do
+    strict_adjacent_digits?(s) && increasing_digits?(s)
+  end
+
   def day_4_part_1(start, finish) do
     Enum.map(start..finish, fn x -> Integer.to_string(x) end)
     |> Enum.map(fn p -> is_password?(p) end)
+    |> Enum.filter(fn x -> x == true end)
+    |> length
+  end
+
+  def day_4_part_2(start, finish) do
+    Enum.map(start..finish, fn x -> Integer.to_string(x) end)
+    |> Enum.map(fn p -> is_strict_password?(p) end)
     |> Enum.filter(fn x -> x == true end)
     |> length
   end
